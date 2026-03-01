@@ -14,7 +14,9 @@ targets = ["wasm32-unknown-unknown"]
 js-sys = "0.3.80"
 wasm-bindgen = { version = "0.2.98", default-features = false }
 wasm-bindgen-futures = "0.4.48"
-web-thread = { git = "https://github.com/daxpedda/wasm-worker", rev = "ce376d95dbdd9e7b59ac7de9c6f14090076f7865", features=["audio-worklet"] }
+web-thread = { git = "https://github.com/daxpedda/wasm-worker", rev = "ce376d95dbdd9e7b59ac7de9c6f14090076f7865", features = [
+  "audio-worklet",
+] }
 
 [dependencies]
 inventory = "0.3.21"
@@ -28,5 +30,6 @@ features = [
   "AudioDestinationNode",
   "AudioWorkletProcessor",
   "AudioWorklet",
-  "console"
+  "MessagePort",
+  "console",
 ]

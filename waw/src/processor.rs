@@ -1,4 +1,5 @@
 use crate::{buffer::ParameterValuesRef, parameter::ParameterDescriptor};
+use web_sys::MessagePort;
 
 /// The `Processor` trait defines the interface for audio processing units.
 pub trait Processor: 'static + Send {
@@ -29,4 +30,11 @@ pub trait Processor: 'static + Send {
     fn parameter_descriptors() -> Vec<ParameterDescriptor> {
         Vec::new()
     }
+
+    /// Called after construction with the processor's MessagePort.
+    ///
+    /// Override this to set up bidirectional communication between the
+    /// AudioWorkletNode (main thread) and this processor (worklet thread).
+    /// The default implementation does nothing.
+    fn set_port(&mut self, _port: MessagePort) {}
 }

@@ -37,7 +37,10 @@ impl<P: Processor> ExtendAudioWorkletProcessor for ProcessorWrapper<P> {
         options: AudioWorkletNodeOptions,
     ) -> Self {
         let wrapper_data = data.expect("Data required");
-        let processor = P::new(wrapper_data.user_data);
+        let mut processor = P::new(wrapper_data.user_data);
+        if let Ok(port) = _this.port() {
+            processor.set_port(port);
+        }
         let is_active = wrapper_data.is_active;
 
         // Initialize with minimal buffers - they will dynamically resize on first process() call
